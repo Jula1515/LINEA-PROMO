@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linea Promo — Publicité, Internet & Comptabilité</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2a;
+      --ink: #1a2e45;
+      --gold: #c8a96e;
+      --gold-light: #e8c98a;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --gray: #6b7a8d;
+      --light: #eef1f5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(13,27,42,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,169,110,0.15);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .logo span { color: var(--white); }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul a {
+      text-decoration: none; color: rgba(255,255,255,0.75);
+      font-size: 0.9rem; font-weight: 400; letter-spacing: 0.04em;
+      transition: color 0.3s;
+    }
+    nav ul a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy) !important;
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      font-weight: 500 !important;
+    }
+    .nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 8rem 4rem 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 70% 50%, rgba(200,169,110,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(200,169,110,0.05) 0%, transparent 60%);
+    }
+    .hero-lines {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-lines::before {
+      content: '';
+      position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+      border-left: 1px solid rgba(200,169,110,0.12);
+      background: linear-gradient(180deg, rgba(200,169,110,0.04) 0%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(200,169,110,0.4);
+      padding: 0.4rem 1rem; margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+    h1 em {
+      font-style: normal; color: var(--gold);
+      position: relative; display: inline-block;
+    }
+    .hero-sub {
+      font-size: 1.1rem; line-height: 1.7;
+      color: rgba(255,255,255,0.65); max-width: 520px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 0.9rem 2.2rem; font-weight: 500;
+      font-size: 0.95rem; letter-spacing: 0.03em;
+      text-decoration: none; border-radius: 2px;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: 0.9rem 2.2rem; font-size: 0.95rem;
+      text-decoration: none; border-radius: 2px;
+      transition: border-color 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    .hero-stats {
+      position: absolute; right: 4rem; bottom: 4rem;
+      display: flex; gap: 3rem;
+      animation: fadeUp 0.8s 0.6s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700; color: var(--gold);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.78rem; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 7rem 4rem;
+      background: var(--cream);
+    }
+    .section-label {
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; color: var(--navy);
+      margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--gray); font-size: 1rem; line-height: 1.7;
+      max-width: 500px; margin-bottom: 4rem;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(13,27,42,0.1);
+    }
+    .service-card {
+      background: var(--white);
+      padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 1.8rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(200,169,110,0.1); border-radius: 2px;
+    }
+    .service-icon svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; color: var(--navy);
+      margin-bottom: 1rem; font-weight: 700;
+    }
+    .service-card p { color: var(--gray); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .service-list { list-style: none; }
+    .service-list li {
+      font-size: 0.88rem; color: var(--gray);
+      padding: 0.4rem 0; border-bottom: 1px solid var(--light);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .service-list li::before {
+      content: '→'; color: var(--gold); font-size: 0.8rem;
+    }
+
+    /* ── WHY US ── */
+    .why {
+      padding: 7rem 4rem;
+      background: var(--navy);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .why-text .section-title { color: var(--white); }
+    .why-text .section-sub { color: rgba(255,255,255,0.55); }
+    .why-items { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .why-item {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1.5rem; border: 1px solid rgba(200,169,110,0.15);
+      border-radius: 2px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .why-item:hover {
+      border-color: rgba(200,169,110,0.4);
+      background: rgba(200,169,110,0.04);
+    }
+    .why-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 900; color: var(--gold);
+      opacity: 0.5; line-height: 1; min-width: 36px;
+    }
+    .why-item h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.4rem; }
+    .why-item p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .why-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-box {
+      width: 100%; aspect-ratio: 1;
+      max-width: 420px;
+      border: 1px solid rgba(200,169,110,0.2);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-box-inner {
+      text-align: center; padding: 3rem;
+    }
+    .why-big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 7rem; font-weight: 900;
+      color: rgba(200,169,110,0.15); line-height: 1;
+      display: block;
+    }
+    .why-box-text {
+      font-size: 1rem; color: rgba(255,255,255,0.6);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .why-box::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 60%);
+      animation: rotateBg 12s linear infinite;
+    }
+    @keyframes rotateBg { to { transform: rotate(360deg); } }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 7rem 4rem;
+      background: var(--ink);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+    }
+    .contact .section-title { color: var(--white); }
+    .contact .section-sub { color: rgba(255,255,255,0.55); }
+    .contact-info { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .contact-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid rgba(200,169,110,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .contact-item h5 { font-size: 0.78rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .contact-item p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+
+    form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    label { font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; }
+    input, textarea, select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white); padding: 0.85rem 1rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+      border-radius: 2px; outline: none;
+      transition: border-color 0.3s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    select option { background: var(--navy); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-submit {
+      background: var(--gold); color: var(--navy);
+      padding: 1rem 2rem; font-weight: 600;
+      font-size: 0.95rem; letter-spacing: 0.04em;
+      border: none; cursor: pointer; border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(200,169,110,0.15);
+      padding: 2.5rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--gold);
+    }
+    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      nav ul { display: none; }
+      .hero { padding: 7rem 2rem 4rem; }
+      .hero-stats { position: static; margin-top: 3rem; flex-wrap: wrap; }
+      .services { padding: 5rem 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+      .why-visual { display: none; }
+      .contact { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Linea<span>Promo</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Pourquoi nous</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Agence multiservices — Entreprises</span>
+    <h1>Votre entreprise,<br><em>amplifiée.</em></h1>
+    <p class="hero-sub">
+      Linea Promo accompagne les entreprises avec des solutions intégrées en publicité, présence digitale et comptabilité. Un seul interlocuteur, des résultats concrets.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Découvrir nos services</a>
+      <a href="#contact" class="btn-outline">Nous contacter</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Pôles d'expertise</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Dédié aux entreprises</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1</span>
+      <span class="stat-label">Interlocuteur unique</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="reveal">
+    <span class="section-label">Ce que nous faisons</span>
+    <h2 class="section-title">Trois expertises,<br>une vision commune</h2>
+    <p class="section-sub">Des services pensés pour les entreprises qui veulent croître sans disperser leurs ressources.</p>
+  </div>
+  <div class="services-grid reveal">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </div>
+      <h3>Publicité &amp; Communication</h3>
+      <p>Stratégies publicitaires sur mesure pour accroître votre visibilité et attirer de nouveaux clients.</p>
+      <ul class="service-list">
+        <li>Campagnes digitales (Google, Meta)</li>
+        <li>Création de supports print &amp; digital</li>
+        <li>Stratégie de marque &amp; identité visuelle</li>
+        <li>Marketing par e-mail</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <h3>Internet &amp; Digital</h3>
+      <p>Création et gestion de votre présence en ligne pour que vos clients vous trouvent facilement.</p>
+      <ul class="service-list">
+        <li>Création de sites web professionnels</li>
+        <li>Référencement naturel (SEO)</li>
+        <li>Gestion des réseaux sociaux</li>
+        <li>Hébergement &amp; maintenance</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>Comptabilité &amp; Gestion</h3>
+      <p>Un suivi comptable rigoureux pour que vous puissiez vous concentrer sur votre cœur de métier.</p>
+      <ul class="service-list">
+        <li>Tenue de comptabilité générale</li>
+        <li>Déclarations fiscales &amp; TVA</li>
+        <li>Gestion des salaires &amp; fiches de paie</li>
+        <li>Conseil financier d'entreprise</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="why-text reveal">
+    <span class="section-label">Pourquoi Linea Promo</span>
+    <h2 class="section-title" style="color:var(--white)">La différence qui<br>fait la différence</h2>
+    <p class="section-sub">Nous croyons qu'une entreprise ne devrait pas jongler entre dix prestataires différents.</p>
+    <div class="why-items">
+      <div class="why-item">
+        <span class="why-num">01</span>
+        <div>
+          <h4>Approche intégrée</h4>
+          <p>Publicité, digital et comptabilité coordonnés pour une cohérence totale de votre développement.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">02</span>
+        <div>
+          <h4>Interlocuteur unique</h4>
+          <p>Un seul contact pour tous vos besoins. Gain de temps, moins de friction, plus d'efficacité.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">03</span>
+        <div>
+          <h4>Tarifs transparents</h4>
+          <p>Pas de mauvaises surprises. Des offres claires adaptées à la taille de votre entreprise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="why-visual reveal">
+    <div class="why-box">
+      <div class="why-box-inner">
+        <span class="why-big-num">LP</span>
+        <p class="why-box-text">Votre partenaire de croissance</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <span class="section-label">Parlons de votre projet</span>
+    <h2 class="section-title">Contactez-nous</h2>
+    <p class="section-sub">Prêt à faire passer votre entreprise au niveau supérieur ? Écrivez-nous, nous répondons sous 24h.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <h5>Email</h5>
+          <p>contact@linea.promo</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h5>Localisation</h5>
+          <p>Suisse — Service aux entreprises</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="reveal" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" placeholder="Jean" required>
+      </div>
+      <div class="form-group">
+        <label>Nom</label>
+        <input type="text" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email professionnel</label>
+      <input type="email" placeholder="jean@entreprise.ch" required>
+    </div>
+    <div class="form-group">
+      <label>Service souhaité</label>
+      <select>
+        <option value="">Choisir un service…</option>
+        <option>Publicité &amp; Communication</option>
+        <option>Internet &amp; Digital</option>
+        <option>Comptabilité &amp; Gestion</option>
+        <option>Pack complet</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Votre message</label>
+      <textarea placeholder="Décrivez brièvement votre projet ou vos besoins…"></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LineaPromo</div>
+  <p>© 2026 Linea Promo. Tous droits réservés.</p>
+  <p>linea.promo</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = '✓ Message envoyé !';
+    btn.style.background = '#4caf79';
+    setTimeout(() => {
+      btn.textContent = 'Envoyer ma demande →';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
